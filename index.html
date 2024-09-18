@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea Shop - E-Commerce</title>
+    <style>
+        /* Gaya untuk teks hero */
+        
+        .hero-text h1 {
+            font-size: 3rem;
+            color: #fff;
+        }
+        /* Efek teks mengetik */
+        
+        .typing-text {
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .navbar {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        
+        .nav-links a:hover {
+            color: #82c91e;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .cart-count {
+            background-color: #82c91e;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 0.9em;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        
+        .hero {
+            background: url('bg.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            background-color: #82c91e;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #6fb912;
+        }
+        
+        .about,
+        .products,
+        .contact {
+            padding: 50px;
+            text-align: center;
+        }
+        
+        .products .product-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .product-item {
+            position: relative;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            margin-bottom: 20px;
+        }
+        
+        .product-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+            cursor: crosshair;
+            /* Kursor silang untuk efek zoom */
+        }
+        
+        .zoom {
+            position: absolute;
+            pointer-events: none;
+            /* Agar zoom area tidak menghalangi kursor */
+            border: 2px solid rgba(0, 0, 0, 0.5);
+            background-size: 200%;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">TeaShop</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="#cart">
+                <img src="pe.webp" alt="Keranjang">
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-text">
+            <h1 class="typing-text" id="typing-text"></h1>
+            <p>Kami menyediakan berbagai teh premium dari berbagai belahan dunia.</p>
+            <a href="#products" class="btn">Belanja Sekarang</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Tentang Kami</h2>
+            <p>Kami menawarkan teh berkualitas tinggi yang diseduh dari bahan terbaik.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Produk Kami</h2>
+            <div class="product-list">
+                <div class="product-item">
+                    <img src="teh1.webp" alt="Teh Hijau">
+                    <div class="zoom"></div>
+                    <!-- Area zoom -->
+                    <h3>Teh Hijau</h3>
+                    <p>Rp 50,000</p>
+                    <button onclick="addToCart('Teh Hijau', 50000)">Tambah ke Keranjang</button>
+                </div>
+                <div class="product-item">
+                    <img src="teh2.jpg" alt="Teh Hitam">
+                    <div class="zoom"></div>
+                    <!-- Area zoom -->
+                    <h3>Teh Hitam</h3>
+                    <p>Rp 60,000</p>
+                    <button onclick="addToCart('Teh Hitam', 60000)">Tambah ke Keranjang</button>
+                </div>
+                <div class="product-item">
+                    <img src="teh3.jpg" alt="Teh Herbal">
+                    <div class="zoom"></div>
+                    <!-- Area zoom -->
+                    <h3>Teh Herbal</h3>
+                    <p>Rp 55,000</p>
+                    <button onclick="addToCart('Teh Herbal', 55000)">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <p>Jika ada pertanyaan, hubungi kami via email.</p>
+            <a href="mailto:info@teashop.com" class="btn">Kontak Kami</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>.</p>
+    </footer>
+
+    <script>
+        const text = "Temukan Teh Favoritmu";
+        let index = 0;
+        let typingElement = document.getElementById('typing-text');
+
+        function typeText() {
+            typingElement.innerHTML = text.slice(0, index);
+            index++;
+
+            if (index > text.length) {
+                setTimeout(() => {
+                    index = 0;
+                    typeText();
+                }, 2000); // Tunggu 2 detik teksnya bakal seperti mengetik ulang 😁
+            } else {
+                setTimeout(typeText, 200); // 200ms per huruf
+            }
+        }
+
+        typeText();
+
+        document.querySelectorAll('.product-item').forEach(item => {
+            const img = item.querySelector('img');
+            const zoom = item.querySelector('.zoom');
+
+            item.addEventListener('mousemove', (e) => {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                zoom.style.backgroundImage = `url('${img.src}')`;
+                zoom.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`; // Adjust zoom size
+                zoom.style.backgroundPosition = `-${x * 2}px -${y * 2}px`;
+                zoom.style.left = `${e.offsetX - zoom.offsetWidth / 2}px`;
+                zoom.style.top = `${e.offsetY - zoom.offsetHeight / 2}px`;
+                zoom.style.display = 'block';
+            });
+
+            item.addEventListener('mouseleave', () => {
+                zoom.style.display = 'none';
+            });
+        });
+
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCart(productName, productPrice) {
+            cart.push({
+                name: productName,
+                price: productPrice
+            });
+            cartCount++;
+            document.querySelector('.cart-count').textContent = cartCount;
+            alert(productName + ' telah ditambahkan ke keranjang.');
+        }
+    </script>
+
+</body>
+
+</html>
